@@ -59,6 +59,22 @@ int serial_port_config(int port, int mode){
             Port2.setDelays(0, 0);
             Port2.beginTransmission();
 		}
+		else if(port == 3) {
+			pinMode(PORT3_DEFAULT_DE_PIN, INPUT);
+            Port3.setPins(PORT3_TX_MINUS_PIN, -1, -1);
+            Port3.setDelays(0, 0);
+            Port3.beginTransmission();
+						pinPeripheral(PIN_SERIAL3_RX, PIO_SERCOM); 
+						pinPeripheral(PIN_SERIAL3_TX, PIO_SERCOM);		
+		}
+		else if(port == 4) {
+			pinMode(PORT4_DEFAULT_DE_PIN, INPUT);
+            Port4.setPins(PORT4_TX_MINUS_PIN, -1, -1);
+            Port4.setDelays(0, 0);
+            Port4.beginTransmission();
+						pinPeripheral(PIN_SERIAL4_RX, PIO_SERCOM_ALT); 
+  				  pinPeripheral(PIN_SERIAL4_TX, PIO_SERCOM_ALT);
+		}
 	}
 	
 	if(port == 1){
@@ -68,6 +84,14 @@ int serial_port_config(int port, int mode){
 	else if(port == 2){
 		pinMode(PORT2_MODE_PIN, OUTPUT);
 		digitalWrite(PORT2_MODE_PIN, mode);
+	}
+	else if(port == 3){
+		pinMode(PORT3_MODE_PIN, OUTPUT);
+		digitalWrite(PORT3_MODE_PIN, mode);
+	}
+	else if(port == 4){
+		pinMode(PORT4_MODE_PIN, OUTPUT);
+		digitalWrite(PORT4_MODE_PIN, mode);
 	}
 	else{
 		return -2;
@@ -107,4 +131,12 @@ int read_cts(int cts){
 
 #ifdef PORT2_SERIAL
 RS485Class Port2(PORT2_SERIAL, PORT2_TX_MINUS_PIN, PORT2_DEFAULT_DE_PIN, PORT2_DEFAULT_RE_PIN);
+#endif
+
+#ifdef PORT3_SERIAL
+RS485Class Port3(PORT3_SERIAL, PORT3_TX_MINUS_PIN, PORT3_DEFAULT_DE_PIN, PORT3_DEFAULT_RE_PIN);
+#endif
+
+#ifdef PORT4_SERIAL
+RS485Class Port4(PORT4_SERIAL, PORT4_TX_MINUS_PIN, PORT4_DEFAULT_DE_PIN, PORT4_DEFAULT_RE_PIN);
 #endif

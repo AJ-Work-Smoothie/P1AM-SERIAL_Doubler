@@ -47,6 +47,26 @@ SOFTWARE.
 #define PORT2_DEFAULT_RE_PIN	PORT2_DEFAULT_DE_PIN
 #endif
 
+/////////////////////////////////adding new ports
+#ifndef PORT3_SERIAL
+#define PORT3_SERIAL Serial3
+#define PORT3_MODE_PIN	A0
+#define PORT3_TX_MINUS_PIN	11
+#define PORT3_RX_PLUS_PIN 12
+#define PORT3_DEFAULT_DE_PIN	A1
+#define PORT3_DEFAULT_RE_PIN	PORT3_DEFAULT_DE_PIN
+#endif
+
+#ifndef PORT4_SERIAL
+#define PORT4_SERIAL Serial4
+#define PORT4_MODE_PIN	A2
+#define PORT4_TX_MINUS_PIN	4
+#define PORT4_RX_PLUS_PIN 5
+#define PORT4_DEFAULT_DE_PIN	A5
+#define PORT4_DEFAULT_RE_PIN	PORT4_DEFAULT_DE_PIN
+#endif
+///////////////////////////////////////////
+
 #define CTS_PIN PORT2_RX_PLUS_PIN
 #define RTS_PIN PORT2_TX_MINUS_PIN
 
@@ -69,6 +89,14 @@ extern RS485Class RS485;
 extern RS485Class Port2;
 #define Port2_RS485 Port2
 #define Port2_RS232 PORT2_SERIAL
+
+extern RS485Class Port3;
+#define Port3_RS485 Port3
+#define Port3_RS232 PORT3_SERIAL
+
+extern RS485Class Port4;
+#define Port4_RS485 Port4
+#define Port4_RS232 PORT4_SERIAL
 
 
 // Begin functions defined with macros so 232 options can be used in 485 only libraries
@@ -95,6 +123,31 @@ extern RS485Class Port2;
         serial_port_config(2, RS232_MODE); \
         Port2.begin(__VA_ARGS__);    \
         Port2.beginTransmission();    \
+    }
+
+/////////////////////////////Adding
+#define PORT3_RS485_BEGIN(...) {   \
+        serial_port_config(3, RS485_MODE); \
+        Port3.begin(__VA_ARGS__);    \
+        Port3.endTransmission();    \
+    }
+
+#define PORT3_RS232_BEGIN(...) {   \
+        serial_port_config(3, RS232_MODE); \
+        Port3.begin(__VA_ARGS__);    \
+        Port3.beginTransmission();    \
+    }
+
+#define PORT4_RS485_BEGIN(...) {   \
+        serial_port_config(4, RS485_MODE); \
+        Port4.begin(__VA_ARGS__);    \
+        Port4.endTransmission();    \
+    }
+
+#define PORT4_RS232_BEGIN(...) {   \
+        serial_port_config(4, RS232_MODE); \
+        Port4.begin(__VA_ARGS__);    \
+        Port4.beginTransmission();    \
     }
 
 #endif

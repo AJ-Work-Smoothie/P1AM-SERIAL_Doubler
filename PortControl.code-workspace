@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../AppData/Local/Arduino15/packages/P1AM-100/hardware/samd/1.6.21/variants/P1AM-100"
+		},
+		{
+			"path": "../P1AM"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
