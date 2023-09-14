@@ -1,6 +1,6 @@
 # P1AM-4x-SERIAL
 
-Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! 
+Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! See the wiki for photos.
 
 ### Under the Hood:
 At its core, the P1AM is a SAMD21G18, which is the same IC that runs the Arduino Zero. If you check into the documentation for the SAMD21, you'll see that is has 6 "sercom" ports. In other words, it has 6 different ports that are configurable to be GPIO pins, UART, I2C, or SPI pins. What I've done is enabled an unsused port, and hijacked the I2C port and reconfigured it to be a serial UART port for us. All of this might sound quite scary, and honestly, it is. Good news is you can skip all the technical and get right to it if you don't need additional information.
@@ -14,19 +14,19 @@ Sercom0 is being used for I2C, so we're gonna hijack that, and Sercom4 is comple
 |  Sercom4/[P2]    |     PortB10    |      D4      |     N/A     |  Serial4 TX  |
 |  Sercom4/[P3]    |     PortB11    |      D5      |     N/A     |  Serial4 RX  |
 
-All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module. 
+All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module.
 
 ## Adapter Assembly and Installation: 
 
-Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. It only takes a minute or two to do. 
-
-
-
-
+**For pictures and more information see this repository's wiki.** The adapter board files are in this repository as "P1AM_SerialDoubler_Adapter". Within that zip, there are DXF board outlines, gerber files, and eagle files for the adapter PCB. PCBs can be ordered very cheaply from places like JLCpcb or PCBWay for less than $20. Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. Make sure the female headers go on the side of the PCB with the text. It only takes a minute or two to do. After soldering the board up, simply plug the adapter into the side of the P1AM-Serial just like it's another module. Then plug the secondary P1AM-Serial module into the other side. 
 
 ## Usage
 
-**The code snippets below require the P1AM_Serial library. Use of the P1AM-Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
+**You must install my version of the P1AM library and the P1AM_4x_Serial. These can both be found in my repositories. Before installation of these, please remove the existing libraries for the P1AM & P1AM_Serial.** 
+
+**RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :).**
+
+**The code snippets below require the P1AM_4x_Serial library. Use of the P1AM_4x_Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
 
 When using the P1AM Serial with a custom protocol, i.e. writing data directly to the port, use the function below that corresponds to the port and mode you are using to configure the port. Baudrate and other settings can be configured the same way as the standard Arduino Serial library. For a list of all configuration options [click here](https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/).
 
@@ -39,7 +39,7 @@ When using the P1AM Serial with a custom protocol, i.e. writing data directly to
 -   **PORT4_RS485_BEGIN()**
 -   **PORT4_RS232_BEGIN()**
 
-Once the port is configured, use the `Port1`, `Port2`, `Port3`, and `Port4` objects to interact with the ports.
+Once the port is configured, use the `Port1`, `Port2`, `Port3`, & `Port4` objects to interact with the ports. Of course `Port3` is the first port on the second serial module, and `Port4` is the second port on the second serial module. 
 
 ```
 // Configure both ports for RS485 at 9600 baud, 8 data bits, no parity, 1 stop bit
@@ -61,7 +61,7 @@ Port3.write("Hello World 3\r\n");
 Port4.write("Hello World 4\r\n");
 ```
 
-Additionally, you can use the standard `Serial1`, `Serial2`, `Serial3`, `Serial4` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
+Additionally, you can use the standard `Serial1`, `Serial2`, `Serial3`, & `Serial4` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
 
 ```
 // Configure all ports for RS232 at 115200 baud, 8 data bits, even parity, 1 stop bit
