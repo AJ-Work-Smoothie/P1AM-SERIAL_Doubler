@@ -9,6 +9,15 @@ Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the 
 ### Under the Hood:
 At its core, the P1AM is a SAMD21G18, which is the same IC that runs the Arduino Zero. If you check into the documentation for the SAMD21, you'll see that is has 6 "sercom" ports. In other words, it has 6 different ports that are configurable to be GPIO pins, UART, I2C, or SPI pins. What I've done is enabled an unsused port, and hijacked the I2C port and reconfigured it to be a serial UART port for us. All of this might sound quite scary, and honestly, it is. Good news is you can skip all the technical and get right to it if you don't need additional information.
 
+Sercom0 is being used for I2C, so we're gonna hijack that, and Sercom4 is completely free. In order to remap these, we have to access the variant.h & variant.cpp board files of the P1AM. The new mappings are as shown:
+
+|  Sercom#/[Pad#]  |  Arduino Port  |  DigitalPin  |  PriorFunc  |    NewFunc   |
+|:----------------:|:--------------:|:------------:|:-----------:|:------------:| 
+|  Sercom0/[P0]    |     PortA8     |      D11     |     SDA     |  Serial3 TX  |
+
+
+
+
 ## Usage
 
 **The code snippets below require the P1AM_Serial library. Use of the P1AM-Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
