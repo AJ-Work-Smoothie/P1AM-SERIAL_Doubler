@@ -1,7 +1,3 @@
-# P1AM-SERIAL
-
-The P1AM-SERIAL is an industrial rated shield that provides two serial interfaces individually configurable for RS232 or RS485. The P1AM-SERIAL is ideal for communicating with RS232 and RS485 devices using custom protocols as well as Modbus RTU, DMX, and other serial based communications.
-
 # P1AM-4x-SERIAL
 
 Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! 
@@ -14,6 +10,16 @@ Sercom0 is being used for I2C, so we're gonna hijack that, and Sercom4 is comple
 |  Sercom#/[Pad#]  |  Arduino Port  |  DigitalPin  |  PriorFunc  |    NewFunc   |
 |:----------------:|:--------------:|:------------:|:-----------:|:------------:| 
 |  Sercom0/[P0]    |     PortA8     |      D11     |     SDA     |  Serial3 TX  |
+|  Sercom0/[P1]    |     PortA9     |      D12     |     SCL     |  Serial3 RX  |
+|  Sercom4/[P2]    |     PortB10    |      D4      |     N/A     |  Serial4 TX  |
+|  Sercom4/[P3]    |     PortB11    |      D5      |     N/A     |  Serial4 RX  |
+
+All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module. 
+
+## Adapter Assembly and Installation: 
+
+Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. It only takes a minute or two to do. 
+
 
 
 
@@ -55,7 +61,7 @@ Port3.write("Hello World 3\r\n");
 Port4.write("Hello World 4\r\n");
 ```
 
-Additionally, you can use the standard `Serial1` and `Serial2` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
+Additionally, you can use the standard `Serial1`, `Serial2`, `Serial3`, `Serial4` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
 
 ```
 // Configure all ports for RS232 at 115200 baud, 8 data bits, even parity, 1 stop bit
