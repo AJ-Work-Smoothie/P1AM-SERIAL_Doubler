@@ -1,6 +1,6 @@
 # P1AM-4x-SERIAL
 
-Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! 
+Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! See the wiki for photos.
 
 ### Under the Hood:
 At its core, the P1AM is a SAMD21G18, which is the same IC that runs the Arduino Zero. If you check into the documentation for the SAMD21, you'll see that is has 6 "sercom" ports. In other words, it has 6 different ports that are configurable to be GPIO pins, UART, I2C, or SPI pins. What I've done is enabled an unsused port, and hijacked the I2C port and reconfigured it to be a serial UART port for us. All of this might sound quite scary, and honestly, it is. Good news is you can skip all the technical and get right to it if you don't need additional information.
@@ -61,7 +61,7 @@ Port3.write("Hello World 3\r\n");
 Port4.write("Hello World 4\r\n");
 ```
 
-Additionally, you can use the standard `Serial1`, `Serial2`, `Serial3`, `Serial4` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
+Additionally, you can use the standard `Serial1`, `Serial2`, `Serial3`, & `Serial4` objects to interact with the ports, however when doing so you cannot use any RS485 functions such as `beginTransmission()` or `endTransmission()`.
 
 ```
 // Configure all ports for RS232 at 115200 baud, 8 data bits, even parity, 1 stop bit
