@@ -18,15 +18,15 @@ All of these definitions are updated in the variants.h & .cpp accordingly. Pleas
 
 ## Adapter Assembly and Installation: 
 
-Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. It only takes a minute or two to do. 
-
-
-
-
+**For pictures and more information see this repository's wiki.** The adapter board files are in this repository as "P1AM_SerialDoubler_Adapter". Within that zip, there are DXF board outlines, gerber files, and eagle files for the adapter PCB. PCBs can be ordered very cheaply from places like JLCpcb or PCBWay for less than $20. Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. Make sure the female headers go on the side of the PCB with the text. It only takes a minute or two to do. After soldering the board up, simply plug the adapter into the side of the P1AM-Serial just like it's another module. Then plug the secondary P1AM-Serial module into the other side. 
 
 ## Usage
 
-**The code snippets below require the P1AM_Serial library. Use of the P1AM-Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
+**You must install my version of the P1AM library and the P1AM_4x_Serial. These can both be found in my repositories. Before installation of these, please remove the existing libraries for the P1AM & P1AM_Serial.** 
+
+**RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :).**
+
+**The code snippets below require the P1AM_4x_Serial library. Use of the P1AM_4x_Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
 
 When using the P1AM Serial with a custom protocol, i.e. writing data directly to the port, use the function below that corresponds to the port and mode you are using to configure the port. Baudrate and other settings can be configured the same way as the standard Arduino Serial library. For a list of all configuration options [click here](https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/).
 
