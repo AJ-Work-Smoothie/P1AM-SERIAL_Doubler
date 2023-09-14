@@ -14,7 +14,7 @@ Sercom0 is being used for I2C, so we're gonna hijack that, and Sercom4 is comple
 |  Sercom4/[P2]    |     PortB10    |      D4      |     N/A     |  Serial4 TX  |
 |  Sercom4/[P3]    |     PortB11    |      D5      |     N/A     |  Serial4 RX  |
 
-All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module. 
+All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module.
 
 ## Adapter Assembly and Installation: 
 
@@ -39,7 +39,7 @@ When using the P1AM Serial with a custom protocol, i.e. writing data directly to
 -   **PORT4_RS485_BEGIN()**
 -   **PORT4_RS232_BEGIN()**
 
-Once the port is configured, use the `Port1`, `Port2`, `Port3`, and `Port4` objects to interact with the ports.
+Once the port is configured, use the `Port1`, `Port2`, `Port3`, & `Port4` objects to interact with the ports. Of course `Port3` is the first port on the second serial module, and `Port4` is the second port on the second serial module. 
 
 ```
 // Configure both ports for RS485 at 9600 baud, 8 data bits, no parity, 1 stop bit
