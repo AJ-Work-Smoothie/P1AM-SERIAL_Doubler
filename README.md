@@ -16,6 +16,9 @@ Sercom0 is being used for I2C, so we're gonna hijack that, and Sercom4 is comple
 
 All of these definitions are updated in the variants.h & .cpp accordingly. Please note, **I2C will no longer function, and the only free available pin on the module is Pin #7.** We are using all of the available expansion pins for enabling the use of the second P1AM-Serial module. 
 
+## Adapter Assembly and Installation: 
+
+Obviously through-hole pin headers couldn't be use as the pins connections needed to be rearranged for the secondary module. So "splayed leg" 2.54mm pitch pin headers were used instead. The "splayed leg" male pin headers are available for purchase from Digikey, manufacturer part # M20-8771042, Digikey part # 952-3263-ND. The female pin headers are just your normal headers with the pins splayed out manually with a pair of pliers. It only takes a minute or two to do. 
 
 
 
