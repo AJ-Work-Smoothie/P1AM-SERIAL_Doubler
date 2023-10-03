@@ -1,4 +1,4 @@
-# P1AM-4x-SERIAL
+# P1AM-SERIAL Doubler
 
 Sometimes you just need more serial ports! Between modbus, SCPI, ASCII, and the hundred other protocols that work via RS232, sometimes you just can't combine different protocols and need more physical ports. Fear no more! I've done all of the heavy lifting for you. I've designed a circuit board and modified the code for this library to enable to usage of another P1AM-Serial module expanding the amount of ports from 2 to 4! See the wiki for photos.
 
