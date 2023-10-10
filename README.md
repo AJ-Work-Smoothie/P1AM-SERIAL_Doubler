@@ -22,7 +22,7 @@ All of these definitions are updated in the variants.h & .cpp accordingly. Pleas
 
 ## Usage
 
-**You must install my version of the P1AM library and the P1AM_4x_Serial. These can both be found in my repositories. Before installation of these, please remove the existing libraries for the P1AM & P1AM_Serial.** 
+**You must install my version of the P1AM library (P1AM_Doubler and the P1AM-Serial_Doubler. These can both be found in my repositories. Before installation of these, please remove the existing libraries for the P1AM & P1AM-SERIAL.** 
 
 **RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :).**
 
