@@ -29,7 +29,7 @@ All of these definitions are updated in the variants.h & .cpp accordingly. Pleas
 3) The variants.cpp & variants.h needs to be updated. Locate those by following this path: C:\Users\YOUR_USER_NAME\AppData\Local\Arduino15\packages\P1AM-100\hardware\samd\1.6.21\variants\P1AM-100
 4) In that folder, replace the variants.h & variants.cpp with the ones from my P1AM-Serial_Doubler library - they are in the root directory. 
 
-**RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :).**
+>NOTE: RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :)
 
 **The code snippets below require the P1AM-Serial_Doubler library. Use of the P1AM-Serial_Doubler library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
 
