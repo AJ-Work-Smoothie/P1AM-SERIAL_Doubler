@@ -22,11 +22,16 @@ All of these definitions are updated in the variants.h & .cpp accordingly. Pleas
 
 ## Usage
 
-**You must install my version of the P1AM library (P1AM_Doubler and the P1AM-Serial_Doubler. These can both be found in my repositories. Before installation of these, please remove the existing libraries for the P1AM & P1AM-SERIAL.** 
+**To use the doubler, you must install my version of the P1AM library & update variants.h & .cpp. Follow the steps below**
+
+1) Locate your Arduino libary location, and remove the P1AM & P1AM-Serial libraries
+2) Download my libaries from this github, P1AM_Doubler & P1AM-Serial_Doubler, and put them in your Arduino library location
+3) The variants.cpp & variants.h needs to be updated. Locate those by following this path: C:\Users\YOUR_USER_NAME\AppData\Local\Arduino15\packages\P1AM-100\hardware\samd\1.6.21\variants\P1AM-100
+4) In that folder, replace the variants.h & variants.cpp with the ones from my P1AM-Serial_Doubler library - they are in the root directory. 
 
 **RS485 was NOT tested, only RS232 on the additional two ports. Unfortunately I don't have a way to test the RS485, but I added all the support in the code for it, so it should work :).**
 
-**The code snippets below require the P1AM_4x_Serial library. Use of the P1AM_4x_Serial library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
+**The code snippets below require the P1AM-Serial_Doubler library. Use of the P1AM-Serial_Doubler library requires version 1.6.21 or greater of the P1AM-100 in the Arduino boards manager.**  
 
 When using the P1AM Serial with a custom protocol, i.e. writing data directly to the port, use the function below that corresponds to the port and mode you are using to configure the port. Baudrate and other settings can be configured the same way as the standard Arduino Serial library. For a list of all configuration options [click here](https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/).
 
